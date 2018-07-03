@@ -1,0 +1,76 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Check Your Hexo Static Site for 404 Errors [ Tony Crowe ]</title>
+  
+    
+      <link rel="stylesheet" href="/build/index.css">
+    
+  
+</head>
+<body>
+
+<div id="menu-outer">
+  <div id="menu-inner">
+    <div>Tony Crowe, Developer</div>
+    
+      <a href="/">Home</a>
+    
+      <a href="/experience">Experience</a>
+    
+      <a href="/contact">Contact</a>
+    
+  </div>
+</div>
+
+<div id="content-outer">
+  <div id="content-inner">
+    
+<article id="post">
+  <h1>Check Your Hexo Static Site for 404 Errors</h1>
+  <p>So the idea is that we will <code>hexo gen</code> generate the site, run <code>http-server</code>, then run <code>blc</code> broken-link-checker.</p>
+<h2><span id="install">Install</span></h2><pre><code class="sh">npm install --save-dev http-server broken-link-checker npm-run-all
+</code></pre>
+<h2><span id="npm-scripts">NPM scripts</span></h2><p>In the <code>scripts</code> section of <code>package.json</code></p>
+<pre><code class="json">&quot;scripts&quot;: {
+  &quot;prd-gulp&quot;: &quot;NODE_ENV=production gulp prd&quot;,
+  &quot;prd-hexo&quot;: &quot;NODE_ENV=production hexo gen&quot;,
+  &quot;prd&quot;: &quot;run-s setup-* &amp;&amp; run-s prd-*&quot;,
+  &quot;test-server&quot;: &quot;http-server public -p 4000 -a 127.0.0.1 -s -c-1 &amp; echo $! &gt; .test-server-id&quot;,
+  &quot;test-blc&quot;: &quot;sleep 1 &amp;&amp; blc --exclude-external -r -requests 32 http://127.0.0.1:4000 &amp;&amp; kill `cat .test-server-id` &amp;&amp; rm .test-server-id&quot;,
+  &quot;test&quot;: &quot;npm run prd &amp;&amp; run-p test-*&quot;
+}
+</code></pre>
+<h2><span id="conclusion">Conclusion</span></h2><p>If all files check for <code>200</code> status it succeeds. If any 404 the script tells you which one and fails. That will allow it to be built into a flow where success is required to continue.</p>
+
+</article>
+
+<div class="paginator"></div>
+
+  </div>
+</div>
+
+<div id="bottom-outer">
+  <div id="bottom-inner">
+    
+      <a href="/">Home</a>
+    
+      <a href="/experience">Experience</a>
+    
+      <a href="/archives">Archives</a>
+    
+  </div>
+</div>
+
+
+  
+    <script src="/build/index.js"></script>
+  
+
+
+</body>
+</html>
