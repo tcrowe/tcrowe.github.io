@@ -1,0 +1,113 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Contact [ Tony Crowe ]</title>
+  
+    
+      <link rel="stylesheet" href="/build/index.css">
+    
+  
+</head>
+<body>
+
+<div id="menu-outer">
+  <div id="menu-inner">
+    <div>Tony Crowe, Developer</div>
+    
+      <a href="/">Home</a>
+    
+      <a href="/experience">Experience</a>
+    
+      <a href="/contact">Contact</a>
+    
+  </div>
+</div>
+
+<div id="content-outer">
+  <div id="content-inner">
+    
+<article id="page">
+  <h1>Contact</h1>
+  <p>Please describe the need and provide links so I can take a look and respond accordingly.</p>
+<p><img id="tce" src="./tce2.png" alt="" style="cursor:pointer;width:146px;margin-left:-4px;"></p>
+<p>I’m happy to receive private messages using <a href="./tony-tonycrowe-com-pgp-key.asc">PGP public key</a>.</p>
+<script>
+(function() {
+
+let img
+let linked = false
+let str1 = 'bWFpbHRvOnRvbnlAdG'
+let str2 = '9ueWNyb3dlLmNvbQ=='
+
+function linkimg() {
+  if (linked === true) {
+    return
+  }
+  img.onclick = () => {
+    let str = str1 + str2
+    str = window.atob(str)
+    console.log('str', str)
+    window.location.href = str
+  }
+  linked = true
+}
+
+function document_mousemove() {
+  console.log('mousemove')
+  linkimg()
+}
+
+function document_scroll() {
+  console.log('scroll')
+  linkimg()
+}
+
+function document_keypress() {
+  console.log('keypress')
+  linkimg()
+}
+
+function window_load() {
+  console.log('load')
+  img = document.getElementById('tce')
+  document.addEventListener('mousemove', document_mousemove)
+  document.addEventListener('scroll', document_scroll)
+  document.addEventListener('keypress', document_keypress)
+}
+
+window.addEventListener('load', window_load)
+
+})()
+</script>
+
+</article>
+
+
+
+  </div>
+</div>
+
+<div id="bottom-outer">
+  <div id="bottom-inner">
+    
+      <a href="/">Home</a>
+    
+      <a href="/experience">Experience</a>
+    
+      <a href="/archives">Archives</a>
+    
+  </div>
+</div>
+
+
+  
+    <script src="/build/index.js"></script>
+  
+
+
+</body>
+</html>

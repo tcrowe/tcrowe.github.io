@@ -1,0 +1,113 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SSH to Your Tor Onion SSHD [ Tony Crowe ]</title>
+  
+    
+      <link rel="stylesheet" href="/build/index.css">
+    
+  
+</head>
+<body>
+
+<div id="menu-outer">
+  <div id="menu-inner">
+    <div>Tony Crowe, Developer</div>
+    
+      <a href="/">Home</a>
+    
+      <a href="/experience">Experience</a>
+    
+      <a href="/contact">Contact</a>
+    
+  </div>
+</div>
+
+<div id="content-outer">
+  <div id="content-inner">
+    
+<article id="post">
+  <h1>SSH to Your Tor Onion SSHD</h1>
+  <!-- toc -->
+<ul>
+<li><a href="#server-config">Server config</a><ul>
+<li><a href="#sshd_config">sshd_config</a></li>
+<li><a href="#torrc">torrc</a></li>
+</ul>
+</li>
+<li><a href="#client-config">Client config</a></li>
+<li><a href="#connect">Connect</a></li>
+</ul>
+<!-- tocstop -->
+<p>You might need to connect to your server via a Tor Hidden Service and bypass certain censorship attempts on networks you’re using.</p>
+<h2><span id="server-config">Server config</span></h2><h3><span id="sshd_config">sshd_config</span></h3><p>First modify your <code>/etc/sshd_config</code> adding an alternate port you want to use.</p>
+<p><img src="/img/06192018-ssh-tor-onion-sshd/sshd_config.png" alt="sshd_config image"></p>
+<p><code>Port 3312</code> can just as well be <code>Port 5542</code> or any other number you want.</p>
+<p>Restart sshd</p>
+<pre><code class="sh"># systemd
+systemctl restart sshd
+
+# osx launchctl
+launchctl stop com.openssh.sshd
+</code></pre>
+<h3><span id="torrc">torrc</span></h3><pre><code>DataDirectory /var/lib/tor
+HiddenServiceDir /var/lib/tor/hidden_services/my-hidden-service
+HiddenServicePort 3312 127.0.0.1:3312
+</code></pre><p>Swap out <code>/var/lib/tor</code> for whatever it is on your system. Like <code>/etc/tor</code> or <code>/usr/local/etc/tor</code>.</p>
+<p>Get your onion address.</p>
+<pre><code class="sh">cat /var/lib/tor/hidden_services/my-hidden-service/hostname
+</code></pre>
+<p>For our example we’ll call it <code>my-hidden-service.onion</code> which is invalid. Yours will be some random funky string.</p>
+<p>Retart Tor</p>
+<pre><code class="sh"># systemd
+systemctl restart tor
+
+# osx homebrew service
+brew service restart tor
+</code></pre>
+<hr>
+<h2><span id="client-config">Client config</span></h2><p>Edit <code>~/.ssh/config</code></p>
+<pre><code>Host my-hidden-service
+  HostName my-hidden-service.onion
+  ProxyCommand /usr/bin/nc -X 5 -x &#39;127.0.0.1:9050&#39; %h %p
+  Port 3312
+  User debian
+  IdentityFile ~/.ssh/my-hidden-service.pem
+</code></pre><p>Swap out <code>User</code> and <code>IdentityFile</code> for whatever it is on your system.</p>
+<p><code>ProxyCommand /usr/bin/nc -X 5 -x &#39;127.0.0.1:9050&#39; %h %p</code> is going to route your connection over the local Tor socks proxy.</p>
+<h2><span id="connect">Connect</span></h2><pre><code class="sh">ssh my-hidden-service
+</code></pre>
+<p>Hopefully that will work for your purposes as it has mine.</p>
+<p>Take care and good onion-ing.</p>
+
+</article>
+
+<div class="paginator"></div>
+
+  </div>
+</div>
+
+<div id="bottom-outer">
+  <div id="bottom-inner">
+    
+      <a href="/">Home</a>
+    
+      <a href="/experience">Experience</a>
+    
+      <a href="/archives">Archives</a>
+    
+  </div>
+</div>
+
+
+  
+    <script src="/build/index.js"></script>
+  
+
+
+</body>
+</html>
