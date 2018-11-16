@@ -1,0 +1,98 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Decentraland HTTP-REST State Synchronization [ Tony Crowe ]</title>
+  
+    
+      <link rel="stylesheet" href="/build/index.css">
+    
+  
+</head>
+<body>
+
+<div id="menu-outer">
+  <div id="menu-inner">
+    <div>Tony Crowe, Developer</div>
+    
+      <a href="/">Home</a>
+    
+      <a href="/experience">Experience</a>
+    
+      <a href="/contact">Contact</a>
+    
+      <a href="https://github.com/tcrowe">Github Repos ⤴</a>
+    
+  </div>
+</div>
+
+<div id="content-outer">
+  <div id="content-inner">
+    
+<article class="post">
+  <h1>Decentraland HTTP-REST State Synchronization</h1>
+  <p><a href="/img/11162018-decentraland-http-rest-state-synchronization.png">success</a></p>
+<p><a href="https://github.com/tcrowe/sample-sync-rest" target="_blank" rel="noopener">New tutorial released</a></p>
+<p>Developers and designers of Decentraland scenes will have a need to synchronize state across all players who are viewing(or inside) a scene.</p>
+<p><a href="https://github.com/tcrowe/sample-sync-websockets" target="_blank" rel="noopener">Previously I discussed doing this with WebSockets</a> but we don’t always want to use WebSockets. There’s extra processing power required with WebSockets that we can avoid by using HTTP-REST.</p>
+<p>The interface is like this:</p>
+<ul>
+<li>GET /api/pixels<ul>
+<li>get all pixels</li>
+</ul>
+</li>
+<li>GET /api/pixels/pixel/?x=6&amp;y=4<ul>
+<li>get a single pixel at {x,y} coordinate from db</li>
+</ul>
+</li>
+<li>PUT /api/pixels/pixel<ul>
+<li>put a new pixel into the db</li>
+</ul>
+</li>
+<li>POST /api/pixels/pixel/:id<ul>
+<li>post an existing pixel back into the db</li>
+</ul>
+</li>
+<li>DELETE /api/pixels/pixel/:id<ul>
+<li>delete existing pixel</li>
+</ul>
+</li>
+</ul>
+<p>That’s how we “draw” the pixels using REST.</p>
+<hr>
+<p>Decentraland<br><a href="https://decentraland.org" target="_blank" rel="noopener">https://decentraland.org</a></p>
+<p>Decentraland Docs - Great tutorials!<br><a href="https://docs.decentraland.org/" target="_blank" rel="noopener">https://docs.decentraland.org/</a></p>
+<p>Decentraland CLI:<br><a href="https://github.com/decentraland/cli" target="_blank" rel="noopener">https://github.com/decentraland/cli</a></p>
+
+</article>
+
+<div class="paginator"></div>
+
+  </div>
+</div>
+
+<div id="bottom-outer">
+  <div id="bottom-inner">
+    
+      <a href="/">Home</a>
+    
+      <a href="/experience">Experience</a>
+    
+      <a href="/archives">Archives</a>
+    
+      <a href="https://github.com/tcrowe">Github Repos</a>
+    
+  </div>
+</div>
+
+
+  
+    <script src="/build/index.js"></script>
+  
+
+
+</body>
+</html>
