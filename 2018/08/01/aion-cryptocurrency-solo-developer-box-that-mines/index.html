@@ -3,7 +3,7 @@
 
 <!doctype html>
 <html lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   <title>Aion Cryptocurrency Solo Developer Box that Mines [ Tony Crowe ]</title>
   
@@ -46,11 +46,9 @@ git clone https://github.com/tcrowe/ansible-role-aion.git
 cd vagrant-aion
 
 # optional but recommended, get a nicer shell for messing with the VM
-ansible-galaxy install gantsign.oh-my-zsh
-</code></pre>
+ansible-galaxy install gantsign.oh-my-zsh</code></pre>
 <p>Edit ./Vagrantfile for cpu and memory you want. Advanced users can set role vars are available to change every aspect of the deployment.</p>
-<pre><code class="sh">vagrant up
-</code></pre>
+<pre><code class="sh">vagrant up</code></pre>
 <p>That’s it!</p>
 <p>It will compile Aion and run a solo, developer, test node isolated from others. You can change the configs to allocate as much funds as you need from the start, do transactions, and run contracts.</p>
 <hr>

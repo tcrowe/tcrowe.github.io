@@ -3,7 +3,7 @@
 
 <!doctype html>
 <html lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   <title>Ansible SSH Pipelining &amp; ControlMaster [ Tony Crowe ]</title>
   
@@ -36,11 +36,13 @@
   <h1>Ansible SSH Pipelining &amp; ControlMaster</h1>
   <p>Speed up your ansible ssh pipelining. Share a connection instead of reconnecting.</p>
 <!-- toc -->
+
 <ul>
 <li><a href="#ssh-config">SSH config</a></li>
 <li><a href="#ansible-config">Ansible config</a></li>
 </ul>
 <!-- tocstop -->
+
 <h2><span id="ssh-config">SSH config</span></h2><p>Create ssh control path</p>
 <p><code>mkdir ~/.ssh/sockets</code></p>
 <p><code>~/.ssh/config</code></p>
@@ -48,13 +50,11 @@
   Compression yes
   ControlMaster auto
   ControlPath ~/.ssh/sockets/%r@%h-%p
-  ControlPersist 600
-</code></pre><hr>
+  ControlPersist 600</code></pre><hr>
 <h2><span id="ansible-config">Ansible config</span></h2><p><code>./ansible.cfg</code></p>
 <pre><code>[ssh_connection]
 pipelining = True
-ssh_args = -F /Users/tcrowe/.ssh/config
-</code></pre><p>Swap out <code>tcrowe</code> for your user.</p>
+ssh_args = -F /Users/tcrowe/.ssh/config</code></pre><p>Swap out <code>tcrowe</code> for your user.</p>
 <hr>
 <p>Good to go!</p>
 <p>Combine with <a href="/2018/06/19/ssh-to-your-tor-onion-sshd/">SSH over Tor</a></p>

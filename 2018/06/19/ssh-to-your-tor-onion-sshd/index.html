@@ -3,7 +3,7 @@
 
 <!doctype html>
 <html lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   <title>SSH to Your Tor Onion SSHD [ Tony Crowe ]</title>
   
@@ -35,6 +35,7 @@
 <article class="post">
   <h1>SSH to Your Tor Onion SSHD</h1>
   <!-- toc -->
+
 <ul>
 <li><a href="#server-config">Server config</a><ul>
 <li><a href="#sshd_config">sshd_config</a></li>
@@ -45,6 +46,7 @@
 <li><a href="#connect">Connect</a></li>
 </ul>
 <!-- tocstop -->
+
 <p>You might need to connect to your server via a Tor Hidden Service and bypass certain censorship attempts on networks you’re using.</p>
 <h2><span id="server-config">Server config</span></h2><h3><span id="sshd_config">sshd_config</span></h3><p>First modify your <code>/etc/sshd_config</code> adding an alternate port you want to use.</p>
 <p><img src="/img/06192018-ssh-tor-onion-sshd/sshd_config.png" alt="sshd_config image"></p>
@@ -54,23 +56,19 @@
 systemctl restart sshd
 
 # osx launchctl
-launchctl stop com.openssh.sshd
-</code></pre>
+launchctl stop com.openssh.sshd</code></pre>
 <h3><span id="torrc">torrc</span></h3><pre><code>DataDirectory /var/lib/tor
 HiddenServiceDir /var/lib/tor/hidden_services/my-hidden-service
-HiddenServicePort 3312 127.0.0.1:3312
-</code></pre><p>Swap out <code>/var/lib/tor</code> for whatever it is on your system. Like <code>/etc/tor</code> or <code>/usr/local/etc/tor</code>.</p>
+HiddenServicePort 3312 127.0.0.1:3312</code></pre><p>Swap out <code>/var/lib/tor</code> for whatever it is on your system. Like <code>/etc/tor</code> or <code>/usr/local/etc/tor</code>.</p>
 <p>Get your onion address.</p>
-<pre><code class="sh">cat /var/lib/tor/hidden_services/my-hidden-service/hostname
-</code></pre>
+<pre><code class="sh">cat /var/lib/tor/hidden_services/my-hidden-service/hostname</code></pre>
 <p>For our example we’ll call it <code>my-hidden-service.onion</code> which is invalid. Yours will be some random funky string.</p>
 <p>Retart Tor</p>
 <pre><code class="sh"># systemd
 systemctl restart tor
 
 # osx homebrew service
-brew service restart tor
-</code></pre>
+brew service restart tor</code></pre>
 <hr>
 <h2><span id="client-config">Client config</span></h2><p>Edit <code>~/.ssh/config</code></p>
 <pre><code>Host my-hidden-service
@@ -78,11 +76,9 @@ brew service restart tor
   ProxyCommand /usr/bin/nc -X 5 -x &#39;127.0.0.1:9050&#39; %h %p
   Port 3312
   User debian
-  IdentityFile ~/.ssh/my-hidden-service.pem
-</code></pre><p>Swap out <code>User</code> and <code>IdentityFile</code> for whatever it is on your system.</p>
+  IdentityFile ~/.ssh/my-hidden-service.pem</code></pre><p>Swap out <code>User</code> and <code>IdentityFile</code> for whatever it is on your system.</p>
 <p><code>ProxyCommand /usr/bin/nc -X 5 -x &#39;127.0.0.1:9050&#39; %h %p</code> is going to route your connection over the local Tor socks proxy.</p>
-<h2><span id="connect">Connect</span></h2><pre><code class="sh">ssh my-hidden-service
-</code></pre>
+<h2><span id="connect">Connect</span></h2><pre><code class="sh">ssh my-hidden-service</code></pre>
 <p>Hopefully that will work for your purposes as it has mine.</p>
 <p>Take care and good onion-ing.</p>
 
