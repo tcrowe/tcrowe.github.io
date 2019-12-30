@@ -11,10 +11,10 @@
       <link rel="stylesheet" href="/build/index.css">
     
   
-<meta name="generator" content="Hexo 4.1.1"></head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 <body>
 
-<div id="menu-outer">
+<header id="menu-outer">
   <div id="menu-inner">
     <div>Tony Crowe, Developer</div>
     
@@ -24,20 +24,89 @@
     
       <a href="/contact">Contact</a>
     
-      <a href="https://github.com/tcrowe" target="_blank" rel="noopener">Github Repos ⤴</a>
-    
   </div>
-</div>
+</header>
 
-<div id="content-outer">
+<main id="content-outer">
   <div id="content-inner">
     
 <article class="page">
   <h1>Contact</h1>
-  <p>Please describe the need and provide links so I can take a look and respond accordingly.</p>
-<img id="tce" src="./tce2.png" alt style="cursor:pointer;width:146px;margin-left:-4px;">
+  <p>Please describe the need and provide links so I can view everything and respond accordingly.</p>
+<table>
+<thead>
+<tr>
+<th>Network</th>
+<th>User</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ProtonMail</td>
+<td><input type="text" value="loading..." class="c-box" data-p1="aGVsbG90b255Y3Jvd2VAcHJvdG9" data-p2="ubWFpbC5jb20="></td>
+</tr>
+<tr>
+<td>Telegram</td>
+<td><input type="text" value="loading..." class="c-box" data-p1="dGNy" data-p2="b3dl"></td>
+</tr>
+<tr>
+<td>Matrix</td>
+<td><input type="text" value="loading..." class="c-box" data-p1="QGhlbGxvdG9ueWNy" data-p2="b3dlOm1hdHJpeC5vcmc="></td>
+</tr>
+<tr>
+<td>BitMessage</td>
+<td><input type="text" value="loading..." class="c-box" data-p1="Qk0tMmNWQW9Kb3luUFJ2akhIQ" data-p2="zRhM05BZ3FVdGFHampZZkQ5SA=="></td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td><a href="https://github.com/tcrowe" target="_blank" rel="noopener">github.com/tcrowe</a></td>
+</tr>
+<tr>
+<td>GitLab</td>
+<td><a href="https://gitlab.com/tcrowe" target="_blank" rel="noopener">gitlab.com/tcrowe</a></td>
+</tr>
+<tr>
+<td>Gitcoin</td>
+<td><a href="https://gitcoin.co/profile/tcrowe" target="_blank" rel="noopener">https://gitcoin.co/profile/tcrowe</a></td>
+</tr>
+</tbody></table>
+<style>
+.c-box {
+  border: 1px solid transparent;
+  outline: none;
+  padding: 0.3rem;
+  width: 300px;
+}
 
-<p>I’m happy to receive private messages using <a href="./tony-tonycrowe-com-pgp-key.asc">PGP public key</a>.</p>
+.c-box:hover, .c-box:focus {
+  border: 1px solid rgb(30, 35, 40);
+}
+</style>
+
+<script>
+window.addEventListener("load", function(){
+  Array.from(document.querySelectorAll(".c-box")).forEach(function (el) {
+    const str = atob(el.dataset.p1 + el.dataset.p2);
+    el.value = str;
+    const focus = () => el.select();
+    el.onfocus = focus;
+    const copier = document.createElement("button");
+    copier.innerHTML = "copy";
+    copier.onclick = function(evt){
+      focus();
+      try { document.execCommand("copy"); } catch(e) {}
+      evt.preventDefault();
+      return false;
+    }
+    el.parentNode.appendChild(copier);
+  });
+})
+</script>
+
+<!--
+<img id="tce" src="./tce2.png" alt="" style="cursor:pointer;width:146px;margin-left:-4px;">
+
+I'm happy to receive private messages using [PGP public key](./tony-tonycrowe-com-pgp-key.asc).
+
 <script>
 (function() {
 
@@ -50,7 +119,7 @@ function linkimg() {
   if (linked === true) {
     return
   }
-  img.onclick = () => {
+  img.onclick = function() {
     let str = str1 + str2
     str = window.atob(str)
     console.log('str', str)
@@ -87,14 +156,16 @@ window.addEventListener('load', window_load)
 })()
 </script>
 
+-->
+
 </article>
 
 
 
   </div>
-</div>
+</main>
 
-<div id="bottom-outer">
+<footer id="bottom-outer">
   <div id="bottom-inner">
     
       <a href="/">Home</a>
@@ -103,10 +174,8 @@ window.addEventListener('load', window_load)
     
       <a href="/archives">Archives</a>
     
-      <a href="https://github.com/tcrowe" target="_blank" rel="noopener">Github Repos</a>
-    
   </div>
-</div>
+</footer>
 
 
   

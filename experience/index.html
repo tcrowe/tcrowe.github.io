@@ -11,10 +11,10 @@
       <link rel="stylesheet" href="/build/index.css">
     
   
-<meta name="generator" content="Hexo 4.1.1"></head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 <body>
 
-<div id="menu-outer">
+<header id="menu-outer">
   <div id="menu-inner">
     <div>Tony Crowe, Developer</div>
     
@@ -24,12 +24,10 @@
     
       <a href="/contact">Contact</a>
     
-      <a href="https://github.com/tcrowe" target="_blank" rel="noopener">Github Repos ⤴</a>
-    
   </div>
-</div>
+</header>
 
-<div id="content-outer">
+<main id="content-outer">
   <div id="content-inner">
     
 <article class="page">
@@ -39,7 +37,8 @@
 <p>Sometimes I’m maintaining and contributing to open source:</p>
 <ul>
 <li><a href="https://github.com/tcrowe" target="_blank" rel="noopener">https://github.com/tcrowe</a></li>
-<li><a href="https://gitcoin.co/profile/tcrowe" target="_blank" rel="noopener">https://gitcoin.co/profile/tcrowe</a></li>
+<li><a href="https://gitlab.com/tcrowe" target="_blank" rel="noopener">https://gitlab.com/tcrowe</a></li>
+<li><a href="https://gitcoin.co/profile/tcrowe" target="_blank" rel="noopener">https://gitcoin.co/profile/tcrowe</a> - crypyocurrency bounties</li>
 </ul>
 <hr>
 <p>Below are some of the teams I was a part of.</p>
@@ -174,7 +173,7 @@ A. Yes</code></pre><p>We can do this all day. It’s impersonal, not that releva
 function connectFullscreenButton(btn) {
   let videoId = btn.dataset.videoId
   let video = document.getElementById(videoId)
-  btn.onclick = () => {
+  btn.onclick = function() {
     let fn = video.requestFullscreen || video.mozRequestFullScreen || video.webkitRequestFullscreen
     if (fn !== undefined) {
       fn.apply(video)
@@ -198,9 +197,9 @@ window.addEventListener('load', window_load)
 
 
   </div>
-</div>
+</main>
 
-<div id="bottom-outer">
+<footer id="bottom-outer">
   <div id="bottom-inner">
     
       <a href="/">Home</a>
@@ -209,10 +208,8 @@ window.addEventListener('load', window_load)
     
       <a href="/archives">Archives</a>
     
-      <a href="https://github.com/tcrowe" target="_blank" rel="noopener">Github Repos</a>
-    
   </div>
-</div>
+</footer>
 
 
   
