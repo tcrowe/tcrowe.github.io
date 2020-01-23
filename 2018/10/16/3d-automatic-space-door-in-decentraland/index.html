@@ -14,25 +14,41 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 <body>
 
-<header id="menu-outer">
-  <div id="menu-inner">
-    <div>Tony Crowe, Developer</div>
-    
-      <a href="/">Home</a>
-    
-      <a href="/experience">Experience</a>
-    
-      <a href="/contact">Contact</a>
-    
+<nav id="menu-outer" class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/"><b>TC</b></a>
+
+    <a role="button"
+      class="navbar-burger burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbar-top">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
   </div>
-</header>
+
+  <div id="navbar-top" class="navbar-menu">
+    <div class="navbar-start">
+      
+        <a class="navbar-item" href="/">Home</a>
+      
+        <a class="navbar-item" href="/experience">Experience</a>
+      
+        <a class="navbar-item" href="/contact">Contact &amp; Links</a>
+      
+    </div>
+  </div>
+</nav>
 
 <main id="content-outer">
-  <div id="content-inner">
+  <div id="content-inner" class="container">
     
 <article class="post">
   <h1>3D Automatic Space-Door in Decentraland</h1>
-  <p>I worked with the Decentraland team to come up with this tutorial how to synchronize state for multiple players across Websockets. There might be some things you want to do on your property which aren’t suitable for IPFS or the other communication channels. So, this is using Websockets inside a WebWorker.</p>
+  <p>Update 2020-01-23: Decentraland changed the API since this example. I’ll post an updated link if I port this.</p>
+<p>I worked with the Decentraland team to come up with this tutorial how to synchronize state for multiple players across Websockets. There might be some things you want to do on your property which aren’t suitable for IPFS or the other communication channels. So, this is using Websockets inside a WebWorker.</p>
 <p><img src="/img/contributions/2018-10-12-websockets01.gif" alt="sample sync websockets"></p>
 <p>Another interesting part of it is the proximity activation feature. By moving near the floor tiles they are going to light up. The door does the same. When users move closer it opens up.</p>
 <p><a href="https://github.com/tcrowe/sample-sync-websockets" target="_blank" rel="noopener">Fork it here ➡️ https://github.com/tcrowe/sample-sync-websockets</a></p>
@@ -45,7 +61,7 @@
 </main>
 
 <footer id="bottom-outer">
-  <div id="bottom-inner">
+  <div id="bottom-inner" class="container">
     
       <a href="/">Home</a>
     
